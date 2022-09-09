@@ -31,7 +31,15 @@ if (isset($_GET["x"]) && isset($_GET["y"]) && count($r_packed) > 0) {
     foreach ($r_packed as $r) {
         $x = $_GET["x"];
         $y = $_GET["y"];
-        $_SESSION["data"][] = [$x, $y, $r, is_inside($x, $y, $r)];
+        $x = strval($x) === strval(intval($x)) ? intval($x) : null;
+        $y = is_numeric($y) ? floatval($y) : null;
+        $r = strval($r) === strval(intval($r)) ? intval($r) : null;
+        if ($x !== null && $y !== null && $r !== null && $x <= 5 && $x >= -3 && $y <= 3 && $y >= -3 &&
+            $r <= 5 && $r >= 1)
+        {
+            $_SESSION["data"][] = [$x, $y, $r, is_inside($x, $y, $r)];
+        }
+
     }
 
 }
@@ -90,8 +98,10 @@ function is_inside($x, $y, $r): bool
 
         function try_parse(x) {
             try {
-                var a = parseInt(x);
-                if (isNaN(a) || a.toString().localeCompare(x) !== 0)
+                var a = parseFloat(x);
+                const reg = new RegExp("^[\\d.]+$");
+                // console.log(reg.test(x));
+                if (isNaN(a) || !reg.test(x))
                     return [false];
                 return [true, a];
             } catch (exc) {
@@ -138,8 +148,8 @@ function is_inside($x, $y, $r): bool
 
         img:hover
         {
-            scale: 200%;
-            position: fixed;
+            /*scale: 200%;*/
+            /*position: fixed;*/
         }
 
         #input_form > label, #input_form > p
