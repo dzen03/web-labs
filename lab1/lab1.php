@@ -80,7 +80,6 @@ function is_inside($x, $y, $r): bool
     <title>Lab1 </title>
 
     <script>
-        document.onload
 
         function validate() {
             const y_input = document.getElementById('y');
