@@ -24,19 +24,19 @@ public class AreaCheckServlet extends HttpServlet
 
     static String PAGE_FOOTER = "</body></html>";
 
-    private boolean check(double x, double y, double r)
+    private boolean check(double x, double y, int r)
     {
         if (x > 0)
         {
             if (y > 0)
-                return (y < -1 * x + r);
+                return (y <= (-1 * x + r));
             else
-                return false;
+                return y*y <= (r*r - x*x);
         }
         else
         {
             if (y > 0)
-                return y*y < r*r - x*x;
+                return false;
             else
                 return (x >= -r && y >= -r);
         }

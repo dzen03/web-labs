@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: ilya
+  Date: 18.10.2022
+  Time: 11:54 PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <meta http-equiv="refresh" content="9; URL="/>
+    <title>Lab3</title>
+    <style type="text/css">
+        p {
+            font-family: sans-serif;
+            font-size: 3vw;
+            height: 3%;
+            background-color: darkgrey;
+            margin: 10px;
+        }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        .midsplit {
+            width: 50%;
+            text-align: center;
+        }
+
+        #results tr {
+            text-align: center;
+        }
+
+        .incorrect
+        {
+            border:1px solid #CC0000;
+            background-color:#ffeeee;
+        }
+
+        img[src$=".png"]
+        {
+            max-width: 100%;
+        }
+
+        form{
+            font-size: large;
+        }
+
+    </style>
+
+</h:head>
+
+<h:body>
+    <p>Ilya Dzenzelyuk; P32102; 15600</p>
+
+    <h:outputText value="It's #{now.dateTime} now."/>
+    <br/>
+    <h:form>
+        <h:commandButton action = "#{navigation.processPage()}" value = "Go to the main page" />
+    </h:form>
+
+</h:body>
+
+</html>
