@@ -1,0 +1,91 @@
+<div *ngIf="key===''">
+  <button type="button" class="btn btn-primary text-light m-3" data-bs-toggle="modal" data-bs-target="#register">
+    Register
+  </button>
+  <button type="button" class="btn btn-primary text-light m-3" data-bs-toggle="modal" data-bs-target="#login">
+    Login
+  </button>
+
+  <div class="modal fade text-dark" id="register" tabindex="-1">
+    <div class="modal-dialog ">
+      <form (submit)="submit(true)" action="/main">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="register_label">Register new account</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="login_login" class="form-label">Login</label>
+              <input type="text" class="form-control" id="register_login">
+            </div>
+            <div class="mb-3">
+              <label for="login_password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="register_password">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary text-light">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal fade text-dark" id="login" tabindex="-1">
+    <div class="modal-dialog">
+      <form (submit)="submit(true)" action="/main">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="login_title">Login into existing account</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="login_login" class="form-label">Login</label>
+              <input type="text" class="form-control" id="login_login">
+            </div>
+            <div class="mb-3">
+              <label for="login_password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="login_password">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary text-light">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+<div *ngIf="key!==''" class="m-3">
+  <p>You're already logged in!</p>
+  <div id="apikey_alert"></div>
+  <button class="btn btn-danger m-2" (click)="show_key()">Show API key</button>
+
+  <button class="btn btn-danger m-2" (click)="logout()">Logout</button>
+</div>
+
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div
+    id="errorToast"
+    class="toast bg-dark"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-header bg-dark">
+      <strong class="me-auto">Error</strong>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body" id="msg">Incorrect login/password.</div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<h1>
+  {{ title }}
+</h1>
+
+<!--<button class="btn btn-primary mb-3 btn-dark" routerLink="/login">Login</button>-->
+<!--<button class="btn btn-primary mb-3 btn-dark" routerLink="/main">Main</button>-->
+<!--<button class="btn btn-primary mb-3 btn-dark" routerLink="">Home</button>-->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+<!--    <a class="navbar-brand" href="#">Navbar</a>-->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <button class="nav-link btn btn-primary text-light mx-lg-2" routerLink="/login" *ngIf="key === ''">Login or register</button>
+          <button class="nav-link btn btn-primary text-light mx-lg-2" routerLink="/login" *ngIf="key !== ''">Profile</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link btn btn-primary text-light mx-lg-2" routerLink="/main">Main</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

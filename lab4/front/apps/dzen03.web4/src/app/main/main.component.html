@@ -1,0 +1,150 @@
+<div class="main row my-2 container-fluid">
+  <div class="col-md-6" style="min-width: max-content">
+    <table class="table table-striped table-hover table-bordered table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">X</th>
+          <th scope="col">Y</th>
+          <th scope="col">R</th>
+          <th scope="col">Inside</th>
+        </tr>
+      </thead>
+      <tbody id="rows">
+        <tr *ngFor="let item of points; index as i">
+          <td>{{ i }}</td>
+          <td>{{ item.x }}</td>
+          <td>{{ item.y }}</td>
+          <td>{{ item.r }}</td>
+          <td>{{ item.inside }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6 text-center">
+    <svg
+      class="img-fluid"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      id="graph"
+    >
+      <image
+        height="100%"
+        width="100%"
+        href="/assets/pict.svg"
+        id="draw"
+        style="display: none"
+      ></image>
+      <image height="100%" width="100%" href="/assets/graph.svg"></image>
+
+      <circle
+        *ngFor="let item of points"
+        r="2%"
+        [attr.cx]="50 + item.x * 8"
+        [attr.cy]="50 - item.y * 8"
+        [attr.fill]="item.inside ? 'green' : 'red'"
+        [attr.rad] = "item.r"
+        hidden="true"
+      />
+    </svg>
+
+    <form (submit)="form_submit()">
+      <input type="hidden" value="GGeA9vGV4zWRjrYqG9Zp" name="key" />
+      <input type="hidden" value="" name="x" id="x" />
+
+      Select X
+      <div
+        class="m-2 form-check form-check-inline"
+        *ngFor="let i of radio_x"
+      >
+        <input
+          class="form-check-input"
+          type="radio"
+          id="x_{{ i }}"
+          value="{{ i }}"
+          (click)="x_select(i)"
+          name="x_"
+        />
+        <label class="form-check-label" for="x_{{ i }}">{{ i }}</label>
+      </div>
+
+      <div class="my-2 row">
+        <div class="col-md-6">
+          <label for="y" class="form-label">Input Y</label>
+        </div>
+        <div class="col-md-6">
+          <input
+            type="text"
+            class="form-control"
+            id="y"
+            name="y"
+            (input)="clicked()"
+            required
+          />
+        </div>
+        <div class="invalid-feedback">Incorrect data</div>
+      </div>
+
+      Select R
+      <div
+        class="m-2 form-check form-check-inline"
+        *ngFor="let i of radio_r"
+      >
+        <input
+          class="form-check-input"
+          type="radio"
+          name="r"
+          id="r_{{ i }}"
+          value="{{ i }}"
+          (click)="r_select(i)"
+          required
+        />
+        <label class="form-check-label" for="r_{{ i }}">{{ i }}</label>
+      </div>
+      <br />
+      <button type="submit" class="btn btn-primary text-light mb-3" id="submit">
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div
+      id="errorToast"
+      class="toast bg-dark"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="toast-header">
+        <strong class="me-auto bg-dark">Error</strong>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="toast-body">Server error.</div>
+    </div>
+
+    <div
+      id="liveToast"
+      class="toast bg-dark"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="toast-header bg-dark">
+        <strong class="me-auto">Invalid R</strong>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="toast-body">You've selected invalid radius.</div>
+    </div>
+  </div>
+</div>
