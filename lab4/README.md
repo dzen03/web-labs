@@ -12,7 +12,7 @@ Also, I'm using `nx` - buld system insead of `npm`.
 CREATE TABLE users (
                       id serial PRIMARY KEY NOT NULL,
                       login TEXT NOT NULL UNIQUE,
-                      password BIGINT NOT NULL,
+                      password TEXT NOT NULL,
                       api_key TEXT NOT NULL UNIQUE
 )
 ```
